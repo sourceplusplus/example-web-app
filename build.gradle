@@ -2,7 +2,6 @@ plugins {
     id 'org.springframework.boot' version '2.2.2.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'com.github.johnrengelman.shadow' version '6.0.0'
-    id "com.avast.gradle.docker-compose" version "0.12.1"
 }
 apply plugin: 'java'
 apply plugin: 'application'
@@ -21,8 +20,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.apache.commons:commons-pool2:2.6.2'
-    compile group: 'io.lettuce', name: 'lettuce-core', version: '5.3.1.RELEASE'
-    compile group: 'org.springframework.data', name: 'spring-data-redis', version: '2.2.2.RELEASE'
     compile group: 'com.h2database', name: 'h2', version: '1.4.200'
     implementation 'com.github.javafaker:javafaker:1.0.2'
 
@@ -34,9 +31,6 @@ dependencies {
 }
 
 test {
-    dependsOn "composeUp"
-    finalizedBy "composeDown"
-
     testLogging {
         events "passed", "skipped", "failed"
         setExceptionFormat("full")
@@ -44,11 +38,6 @@ test {
         outputs.upToDateWhen { false }
         showStandardStreams = true
     }
-}
-
-dockerCompose {
-    useComposeFiles = ['./docker-compose.yml']
-    captureContainersOutput = true
 }
 
 //application {
