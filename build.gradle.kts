@@ -6,11 +6,12 @@ plugins {
     id("application")
 }
 
-group "spp.example"
-version "1.0-SNAPSHOT"
+group = "spp.example"
+version = "1.0-SNAPSHOT"
 
 application {
     mainClass.set("spp.example.operate.WebappOperator")
+    applicationName = "spp-example-webapp"
 }
 
 repositories {
