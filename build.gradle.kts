@@ -1,7 +1,7 @@
 plugins {
-    id ("org.springframework.boot") version "2.2.2.RELEASE"
-    id ("io.spring.dependency-management") version "1.0.8.RELEASE"
-    id ("com.github.johnrengelman.shadow") version "6.0.0"
+    id("org.springframework.boot") version "2.6.2"
+    id("io.spring.dependency-management") version "1.0.11.RELEASE"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
     id("java")
     id("application")
 }
@@ -43,9 +43,3 @@ tasks {
         }
     }
 }
-
-//application {
-//    applicationDefaultJvmArgs = [
-//            "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5105",
-//            "-javaagent:/home/brandon/IdeaProjects/spp-platform-source/probe/control/build/libs/spp-probe-0.1.0.jar"]
-//}
