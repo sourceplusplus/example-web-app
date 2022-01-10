@@ -35,7 +35,7 @@ dependencies {
 tasks {
     test {
         testLogging {
-            events(listOf("passed", "skipped", "failed"))
+            events("passed", "skipped", "failed")
             setExceptionFormat("full")
 
             outputs.upToDateWhen { false }
