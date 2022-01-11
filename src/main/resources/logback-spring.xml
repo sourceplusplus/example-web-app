@@ -46,8 +46,8 @@
         <appender-ref ref="Console" />
     </root>
 
-<!--    <logger name="spp.example" level="trace">-->
-<!--        <appender-ref ref="grpc-log"/>-->
-<!--    </logger>-->
+    <logger name="spp.example" level="trace">
+        <appender-ref ref="grpc-log"/>
+    </logger>
 
 </configuration>
