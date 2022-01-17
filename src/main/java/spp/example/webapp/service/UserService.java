@@ -2,7 +2,6 @@ package spp.example.webapp.service;
 
 import spp.example.webapp.model.User;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
@@ -15,11 +14,5 @@ public interface UserService {
 
     void deleteUser(User user);
 
-//    List<User> getUsersByFirstName(String firstName);
-//
-//    List<User> getUsersByLastName(String firstLast);
-
     Optional<User> getUserByFirstAndLastName(String firstName, String lastName);
-
-//    UserSession getUserSession(User user);
 }

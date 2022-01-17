@@ -11,7 +11,7 @@ version = "1.0-SNAPSHOT"
 
 application {
     mainClass.set("spp.example.operate.WebappOperator")
-    applicationName = "spp-example-webapp"
+    applicationName = "example-jvm"
 }
 
 repositories {
