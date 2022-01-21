@@ -69,7 +69,15 @@ public class WebappController {
             log.error("Threw error", ex);
         }
 
+        sometimesUncaughtException();
         uncaughtException();
+    }
+
+    @Trace
+    private void sometimesUncaughtException() {
+        if (Math.random() > 0.5) {
+            throw new RuntimeException("Something bad happened");
+        }
     }
 
     @Trace
