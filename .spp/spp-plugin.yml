@@ -1,0 +1,6 @@
+service_host: "https://demo.sourceplus.plus:5445"
+access_token: "change-me"
+verify_host: false
+
+root_source_packages:
+  - "spp.example"
