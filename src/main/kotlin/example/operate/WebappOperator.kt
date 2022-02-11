@@ -1,117 +1,101 @@
-package spp.example.operate;
+package example.operate
 
-import com.github.javafaker.Faker;
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
-import spp.example.webapp.Booter;
-import spp.example.webapp.model.User;
+import com.github.javafaker.Faker
+import example.webapp.Booter
+import example.webapp.model.User
+import org.apache.commons.lang3.tuple.ImmutablePair
+import org.apache.commons.lang3.tuple.Pair
+import org.springframework.http.HttpMethod
+import org.springframework.web.client.RestClientException
+import org.springframework.web.client.RestTemplate
+import org.springframework.web.util.UriComponentsBuilder
+import java.util.*
+import java.util.concurrent.*
 
-import java.net.URI;
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
-
-public class WebappOperator {
-
-    private static final RestTemplate restTemplate = new RestTemplate();
-    private static final Faker faker = Faker.instance();
-
-    private static List<Pair<String, String>> genNames = new CopyOnWriteArrayList<>();
-    private static int minUserId = Integer.MAX_VALUE;
-    private static int maxUserId = Integer.MIN_VALUE;
-
-    public static void main(String[] args) {
+object WebappOperator {
+    private val restTemplate = RestTemplate()
+    private val faker = Faker.instance()
+    private val genNames: MutableList<Pair<String?, String?>> = CopyOnWriteArrayList()
+    private var minUserId = Int.MAX_VALUE
+    private var maxUserId = Int.MIN_VALUE
+    @JvmStatic
+    fun main(args: Array<String>) {
         //start webapp
-        Booter.main(args);
-
-        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
-            String firstName = faker.name().firstName();
-            String lastName = faker.name().lastName();
-            genNames.add(new ImmutablePair(firstName, lastName));
+        Booter.main(args)
+        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate({
+            val firstName = faker.name().firstName()
+            val lastName = faker.name().lastName()
+            genNames.add(ImmutablePair.of(firstName, lastName))
             try {
-                URI uri = UriComponentsBuilder
-                        .fromHttpUrl("http://localhost:9999/users")
-                        .queryParam("firstName", firstName)
-                        .queryParam("lastName", lastName)
-                        .build()
-                        .toUri();
-                restTemplate.exchange(uri, HttpMethod.POST, null, User.class);
-            } catch (Exception ignore) {
+                val uri = UriComponentsBuilder
+                    .fromHttpUrl("http://localhost:9999/users")
+                    .queryParam("firstName", firstName)
+                    .queryParam("lastName", lastName)
+                    .build()
+                    .toUri()
+                restTemplate.exchange(uri, HttpMethod.POST, null, User::class.java)
+            } catch (ignore: Exception) {
             }
-        }, 0, ThreadLocalRandom.current().nextInt(2500 * 5), TimeUnit.MILLISECONDS);
-
-        genNames.add(new ImmutablePair(faker.name().firstName(), faker.name().lastName()));
-        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
+        }, 0, ThreadLocalRandom.current().nextInt(2500 * 5).toLong(), TimeUnit.MILLISECONDS)
+        genNames.add(ImmutablePair.of(faker.name().firstName(), faker.name().lastName()))
+        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate({
             try {
-                Pair<String, String> genName;
+                val genName: Pair<String?, String?>
                 if (ThreadLocalRandom.current().nextInt(10) > 8) {
-                    genName = genNames.remove(ThreadLocalRandom.current().nextInt(genNames.size()));
+                    genName = genNames.removeAt(ThreadLocalRandom.current().nextInt(genNames.size))
                 } else {
-                    genName = new ImmutablePair(faker.name().firstName(), faker.name().lastName());
+                    genName = ImmutablePair.of(faker.name().firstName(), faker.name().lastName())
                 }
-                URI uri = UriComponentsBuilder
-                        .fromHttpUrl("http://localhost:9999/users")
-                        .queryParam("firstName", genName.getLeft())
-                        .queryParam("lastName", genName.getRight())
-                        .build()
-                        .toUri();
-                restTemplate.exchange(uri, HttpMethod.DELETE, null, User.class);
-            } catch (Exception ignore) {
+                val uri = UriComponentsBuilder
+                    .fromHttpUrl("http://localhost:9999/users")
+                    .queryParam("firstName", genName.left)
+                    .queryParam("lastName", genName.right)
+                    .build()
+                    .toUri()
+                restTemplate.exchange(uri, HttpMethod.DELETE, null, User::class.java)
+            } catch (ignore: Exception) {
             }
-        }, 0, ThreadLocalRandom.current().nextInt(1500 * 5), TimeUnit.MILLISECONDS);
-
-        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
-            ResponseEntity<User[]> userEntities = restTemplate.getForEntity("http://localhost:9999/users", User[].class);
-            Arrays.stream(userEntities.getBody()).forEach(user -> {
-                if (user.getId() < minUserId) {
-                    minUserId = (int) user.getId();
+        }, 0, ThreadLocalRandom.current().nextInt(1500 * 5).toLong(), TimeUnit.MILLISECONDS)
+        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate({
+            val userEntities = restTemplate.getForEntity("http://localhost:9999/users", Array<User>::class.java)
+            Arrays.stream(userEntities.body).forEach { user: User ->
+                if (user.id < minUserId) {
+                    minUserId = user.id.toInt()
                 }
-                if (user.getId() > maxUserId) {
-                    maxUserId = (int) user.getId();
+                if (user.id > maxUserId) {
+                    maxUserId = user.id.toInt()
                 }
-            });
-        }, 0, ThreadLocalRandom.current().nextInt(3500 * 5), TimeUnit.MILLISECONDS);
-
-        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
+            }
+        }, 0, ThreadLocalRandom.current().nextInt(3500 * 5).toLong(), TimeUnit.MILLISECONDS)
+        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate({
             if (minUserId < maxUserId && maxUserId > 0) {
-                int userId = ThreadLocalRandom.current().nextInt(minUserId, maxUserId);
+                var userId = ThreadLocalRandom.current().nextInt(minUserId, maxUserId)
                 if (ThreadLocalRandom.current().nextBoolean()) {
-                    userId *= 2;
+                    userId *= 2
                 }
                 try {
-                    restTemplate.getForEntity("http://localhost:9999/users/" + userId, User.class);
-                } catch (RestClientException ignore) {
+                    restTemplate.getForEntity("http://localhost:9999/users/$userId", User::class.java)
+                } catch (ignore: RestClientException) {
                 }
             }
-        }, 0, ThreadLocalRandom.current().nextInt(3500 * 5), TimeUnit.MILLISECONDS);
-
-        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
+        }, 0, ThreadLocalRandom.current().nextInt(3500 * 5).toLong(), TimeUnit.MILLISECONDS)
+        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate({
             try {
-                restTemplate.getForEntity("http://localhost:9999/throws-exception", User.class);
-            } catch (RestClientException ignore) {
+                restTemplate.getForEntity("http://localhost:9999/throws-exception", User::class.java)
+            } catch (ignore: RestClientException) {
             }
-        }, 0, ThreadLocalRandom.current().nextInt(6500 * 5), TimeUnit.MILLISECONDS);
-
-        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
+        }, 0, ThreadLocalRandom.current().nextInt(6500 * 5).toLong(), TimeUnit.MILLISECONDS)
+        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate({
             try {
-                restTemplate.getForEntity("http://localhost:9999/primitive-local-vars", User.class);
-            } catch (RestClientException ignore) {
+                restTemplate.getForEntity("http://localhost:9999/primitive-local-vars", User::class.java)
+            } catch (ignore: RestClientException) {
             }
-        }, 0, 1, TimeUnit.SECONDS);
-
-        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
+        }, 0, 1, TimeUnit.SECONDS)
+        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate({
             try {
-                restTemplate.getForEntity("http://localhost:9999/changing-primitive-local-vars", User.class);
-            } catch (RestClientException ignore) {
+                restTemplate.getForEntity("http://localhost:9999/changing-primitive-local-vars", User::class.java)
+            } catch (ignore: RestClientException) {
             }
-        }, 0, 2, TimeUnit.SECONDS);
+        }, 0, 2, TimeUnit.SECONDS)
     }
 }

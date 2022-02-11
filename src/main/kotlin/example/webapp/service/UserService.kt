@@ -1,18 +1,12 @@
-package spp.example.webapp.service;
+package example.webapp.service
 
-import spp.example.webapp.model.User;
+import example.webapp.model.User
+import java.util.*
 
-import java.util.Optional;
-
-public interface UserService {
-
-    Iterable<User> getUsers();
-
-    Optional<User> getUser(long userId);
-
-    User createUser(User user);
-
-    void deleteUser(User user);
-
-    Optional<User> getUserByFirstAndLastName(String firstName, String lastName);
+interface UserService {
+    val users: Iterable<User?>
+    fun getUser(userId: Long): Optional<User?>
+    fun createUser(user: User): User
+    fun deleteUser(user: User)
+    fun getUserByFirstAndLastName(firstName: String?, lastName: String?): Optional<User?>?
 }

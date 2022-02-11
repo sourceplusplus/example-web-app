@@ -4,6 +4,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("java")
     id("application")
+    id("org.jetbrains.kotlin.jvm") version "1.6.10"
 }
 
 group = "spp.example"

@@ -1,15 +1,11 @@
-package spp.example.webapp.repository;
+package example.webapp.repository
 
-import org.springframework.data.repository.CrudRepository;
-import spp.example.webapp.model.User;
+import example.webapp.model.User
+import org.springframework.data.repository.CrudRepository
+import java.util.*
 
-import java.util.List;
-import java.util.Optional;
-
-public interface UserStorage extends CrudRepository<User, Long> {
-    List<User> findByFirstname(String firstName);
-
-    List<User> findByLastname(String firstName);
-
-    Optional<User> findByFirstnameAndLastname(String firstName, String lastName);
+interface UserStorage : CrudRepository<User?, Long?> {
+    fun findByFirstname(firstName: String?): List<User?>?
+    fun findByLastname(firstName: String?): List<User?>?
+    fun findByFirstnameAndLastname(firstName: String?, lastName: String?): Optional<User?>?
 }

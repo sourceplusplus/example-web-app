@@ -1,44 +1,18 @@
-package spp.example.webapp.model;
+package example.webapp.model
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.io.Serializable;
+import java.io.Serializable
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
 
 @Entity
-public class User implements Serializable {
-
+class User : Serializable {
     @Id
     @GeneratedValue
-    private long id = -1;
-    private String firstname;
-    private String lastname;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String toString() {
-        return String.format("[#UserObject] Id: %s", id);
+    var id: Long = -1
+    var firstname: String? = null
+    var lastname: String? = null
+    override fun toString(): String {
+        return String.format("[#UserObject] Id: %s", id)
     }
 }

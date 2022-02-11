@@ -1,12 +1,12 @@
-package spp.example.webapp;
+package example.webapp
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.SpringApplication
+import org.springframework.boot.autoconfigure.SpringBootApplication
 
 @SpringBootApplication
-public class Booter {
-
-    public static void main(String[] args) {
-        SpringApplication.run(Booter.class, args);
+object Booter {
+    @JvmStatic
+    fun main(args: Array<String>) {
+        SpringApplication.run(Booter::class.java, *args)
     }
 }
