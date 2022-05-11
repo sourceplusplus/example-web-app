@@ -6,3 +6,6 @@ service_name: "spp"
 
 root_source_packages:
   - "spp.example"
+
+portal_config:
+  zoom_level: 1.0
