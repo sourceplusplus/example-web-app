@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -34,6 +36,11 @@ public class InstrumentTest implements Runnable {
         short sh = Short.MIN_VALUE;
         double d = 00.23d;
         boolean bool = true;
-        nullStream.print(i + c + s + f + max + b + sh + d + bool);
+        int[] iArr = new int[]{1, 2, 3};
+        List<Integer> iList = new ArrayList<>();
+        iList.add(1);
+        iList.add(2);
+        iList.add(3);
+        nullStream.print(i + c + s + f + max + b + sh + d + bool + iArr + iList);
     }
 }
