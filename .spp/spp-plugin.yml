@@ -1,8 +1,8 @@
 override: true
-service_host: "https://demo.sourceplus.plus:12800"
+service_host: "https://demo.sourceplus.plus"
 access_token: "change-me"
 verify_host: false
-service_name: "spp"
+service_name: "example-jvm"
 
 root_source_packages:
   - "spp.example"
