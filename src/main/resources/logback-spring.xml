@@ -40,12 +40,6 @@
         </encoder>
     </appender>
 
-    <!-- LOG everything at INFO level -->
-    <root level="info">
-        <appender-ref ref="RollingFile" />
-        <appender-ref ref="Console" />
-    </root>
-
     <logger name="spp.example" level="trace">
         <appender-ref ref="grpc-log"/>
     </logger>
