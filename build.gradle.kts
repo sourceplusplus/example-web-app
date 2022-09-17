@@ -22,7 +22,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.apache.commons:commons-pool2:2.6.2")
+    implementation("org.apache.commons:commons-pool2:2.11.1")
     implementation("com.h2database:h2:1.4.200")
     implementation("com.github.javafaker:javafaker:1.0.2")
 
