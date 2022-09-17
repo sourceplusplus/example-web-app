@@ -26,8 +26,8 @@ dependencies {
     implementation("com.h2database:h2:1.4.200")
     implementation("com.github.javafaker:javafaker:1.0.2")
 
-    compileOnly("org.projectlombok:lombok:1.18.4")
-    annotationProcessor("org.projectlombok:lombok:1.18.4")
+    compileOnly("org.projectlombok:lombok:1.18.24")
+    annotationProcessor("org.projectlombok:lombok:1.18.24")
 
     compileOnly("org.apache.skywalking:apm-toolkit-trace:8.8.0")
     implementation("org.apache.skywalking:apm-toolkit-logback-1.x:8.8.0")
