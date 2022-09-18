@@ -133,6 +133,6 @@ public class WebappOperator {
                 restTemplate.getForEntity("http://localhost:9999/failing-endpoint", Void.class);
             } catch (RestClientException ignore) {
             }
-        }, 0, 1, TimeUnit.SECONDS);
+        }, 0, 3, TimeUnit.SECONDS);
     }
 }
