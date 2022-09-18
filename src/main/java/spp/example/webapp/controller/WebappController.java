@@ -100,14 +100,14 @@ public class WebappController {
         }
     }
 
-    @RequestMapping("/multi-response-time-endpoint")
-    public void multiResponseTimeEndpoint() {
-        // this endpoint either takes 5ms or 50ms to complete
+    @RequestMapping("/avg50ms-response-time-endpoint")
+    public void avg50msResponseTimeEndpoint() {
+        // this endpoint has an average response time of 50ms
         try {
             if (Math.random() < 0.5) {
-                Thread.sleep(5);
+                Thread.sleep(40);
             } else {
-                Thread.sleep(50);
+                Thread.sleep(60);
             }
         } catch (InterruptedException ignore) {
         }

@@ -137,9 +137,9 @@ public class WebappOperator {
 
         Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
             try {
-                restTemplate.getForEntity("http://localhost:9999/multi-response-time-endpoint", Void.class);
+                restTemplate.getForEntity("http://localhost:9999/avg50ms-response-time-endpoint", Void.class);
             } catch (RestClientException ignore) {
             }
-        }, 0, 1, TimeUnit.SECONDS);
+        }, 0, 1500, TimeUnit.MILLISECONDS);
     }
 }
