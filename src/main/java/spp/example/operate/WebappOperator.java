@@ -127,5 +127,12 @@ public class WebappOperator {
             } catch (RestClientException ignore) {
             }
         }, 0, 500, TimeUnit.MILLISECONDS);
+
+        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
+            try {
+                restTemplate.getForEntity("http://localhost:9999/failing-endpoint", Void.class);
+            } catch (RestClientException ignore) {
+            }
+        }, 0, 1, TimeUnit.SECONDS);
     }
 }

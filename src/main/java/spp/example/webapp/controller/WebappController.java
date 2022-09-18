@@ -91,6 +91,14 @@ public class WebappController {
         // this endpoint is called twice per second
     }
 
+    @RequestMapping("/failing-endpoint")
+    public void failingEndpoint() {
+        // this endpoint fails 75% of the time
+        if (Math.random() < 0.75) {
+            throw new RuntimeException("Endpoint failed");
+        }
+    }
+
     @Trace
     private void sometimesUncaughtException() {
         if (Math.random() > 0.5) {
