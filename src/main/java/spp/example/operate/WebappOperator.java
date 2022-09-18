@@ -140,6 +140,6 @@ public class WebappOperator {
                 restTemplate.getForEntity("http://localhost:9999/avg50ms-response-time-endpoint", Void.class);
             } catch (RestClientException ignore) {
             }
-        }, 0, 1500, TimeUnit.MILLISECONDS);
+        }, 0, 2, TimeUnit.SECONDS);
     }
 }
