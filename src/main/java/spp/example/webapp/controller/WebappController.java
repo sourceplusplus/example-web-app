@@ -73,6 +73,11 @@ public class WebappController {
         uncaughtException();
     }
 
+    @RequestMapping(value = "/unused-endpoint")
+    public void unusedEndpoint() {
+        // this endpoint is never called
+    }
+
     @Trace
     private void sometimesUncaughtException() {
         if (Math.random() > 0.5) {
