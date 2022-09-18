@@ -80,6 +80,7 @@ public class WebappController {
 
     @RequestMapping(value = "/slow-endpoint")
     public void slowEndpoint() {
+        // this endpoint takes two seconds to complete
         try {
             Thread.sleep(2000);
         } catch (InterruptedException ignore) {
