@@ -86,6 +86,11 @@ public class WebappController {
         }
     }
 
+    @RequestMapping(value = "/high-load-endpoint")
+    public void highLoadEndpoint() {
+        // this endpoint is called twice per second
+    }
+
     @Trace
     private void sometimesUncaughtException() {
         if (Math.random() > 0.5) {

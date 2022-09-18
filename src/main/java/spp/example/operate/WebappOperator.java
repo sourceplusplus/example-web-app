@@ -120,5 +120,12 @@ public class WebappOperator {
             } catch (RestClientException ignore) {
             }
         }, 0, 3, TimeUnit.SECONDS);
+
+        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
+            try {
+                restTemplate.getForEntity("http://localhost:9999/high-load-endpoint", Void.class);
+            } catch (RestClientException ignore) {
+            }
+        }, 0, 500, TimeUnit.MILLISECONDS);
     }
 }
