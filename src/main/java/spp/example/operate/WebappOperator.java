@@ -105,7 +105,7 @@ public class WebappOperator {
                 restTemplate.getForEntity("http://localhost:9999/primitive-local-vars", Void.class);
             } catch (RestClientException ignore) {
             }
-        }, 0, 1, TimeUnit.SECONDS);
+        }, 0, 750, TimeUnit.MILLISECONDS);
 
         Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
             try {
@@ -134,5 +134,12 @@ public class WebappOperator {
             } catch (RestClientException ignore) {
             }
         }, 0, 3, TimeUnit.SECONDS);
+
+        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
+            try {
+                restTemplate.getForEntity("http://localhost:9999/multi-response-time-endpoint", Void.class);
+            } catch (RestClientException ignore) {
+            }
+        }, 0, 1, TimeUnit.SECONDS);
     }
 }

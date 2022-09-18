@@ -100,6 +100,19 @@ public class WebappController {
         }
     }
 
+    @RequestMapping("/multi-response-time-endpoint")
+    public void multiResponseTimeEndpoint() {
+        // this endpoint either takes 5ms or 50ms to complete
+        try {
+            if (Math.random() < 0.5) {
+                Thread.sleep(5);
+            } else {
+                Thread.sleep(50);
+            }
+        } catch (InterruptedException ignore) {
+        }
+    }
+
     @Trace
     private void sometimesUncaughtException() {
         if (Math.random() > 0.5) {
