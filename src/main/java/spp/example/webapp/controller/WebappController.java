@@ -78,6 +78,14 @@ public class WebappController {
         // this endpoint is never called
     }
 
+    @RequestMapping(value = "/slow-endpoint")
+    public void slowEndpoint() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException ignore) {
+        }
+    }
+
     @Trace
     private void sometimesUncaughtException() {
         if (Math.random() > 0.5) {

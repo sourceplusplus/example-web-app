@@ -102,16 +102,23 @@ public class WebappOperator {
 
         Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
             try {
-                restTemplate.getForEntity("http://localhost:9999/primitive-local-vars", User.class);
+                restTemplate.getForEntity("http://localhost:9999/primitive-local-vars", Void.class);
             } catch (RestClientException ignore) {
             }
         }, 0, 1, TimeUnit.SECONDS);
 
         Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
             try {
-                restTemplate.getForEntity("http://localhost:9999/changing-primitive-local-vars", User.class);
+                restTemplate.getForEntity("http://localhost:9999/changing-primitive-local-vars", Void.class);
             } catch (RestClientException ignore) {
             }
         }, 0, 2, TimeUnit.SECONDS);
+
+        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
+            try {
+                restTemplate.getForEntity("http://localhost:9999/slow-endpoint", Void.class);
+            } catch (RestClientException ignore) {
+            }
+        }, 0, 3, TimeUnit.SECONDS);
     }
 }
