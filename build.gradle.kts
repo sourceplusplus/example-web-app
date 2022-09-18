@@ -23,8 +23,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.apache.commons:commons-pool2:2.11.1")
-    implementation("com.h2database:h2:2.1.214")
-    implementation("com.github.javafaker:javafaker:1.0.2")
+    implementation("com.h2database:h2:1.4.200")
+    implementation("com.github.javafaker:javafaker:1.0.2") {
+        exclude("org.yaml", "snakeyaml")
+    }
 
     compileOnly("org.projectlombok:lombok:1.18.24")
     annotationProcessor("org.projectlombok:lombok:1.18.24")
