@@ -4,8 +4,5 @@ access_token: "change-me"
 verify_host: false
 service_name: "example-jvm"
 
-root_source_packages:
-  - "spp.example"
-
 portal_config:
   zoom_level: 1.0
