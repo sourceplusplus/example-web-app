@@ -113,6 +113,11 @@ public class WebappController {
         }
     }
 
+    @RequestMapping("/manual-endpoint")
+    public void manualEndpoint() {
+        // manually trigger this endpoint to demonstrate real-time live views
+    }
+
     @Trace
     private void sometimesUncaughtException() {
         if (Math.random() > 0.5) {
