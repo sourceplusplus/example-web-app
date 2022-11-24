@@ -1,8 +1,4 @@
 override: true
-service_host: "https://demo.sourceplus.plus"
+service_host: "http://localhost"
 access_token: "change-me"
-verify_host: false
 service_name: "example-jvm"
-
-portal_config:
-  zoom_level: 1.0

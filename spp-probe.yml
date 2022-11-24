@@ -1,0 +1,9 @@
+spp:
+  platform_host: ${SPP_PROBE_PLATFORM_HOST:-localhost}
+  platform_port: ${SPP_PROBE_PLATFORM_PORT:-12800}
+  quiet_mode: ${SPP_PROBE_QUIET_MODE:-false}
+skywalking:
+  logging:
+    level: ${SW_LOGGING_LEVEL:-INFO}
+  agent:
+    service_name: ${SW_AGENT_NAME:-example-jvm}

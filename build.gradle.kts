@@ -2,6 +2,8 @@ plugins {
     id("org.springframework.boot") version "2.7.5"
     id("io.spring.dependency-management") version "1.1.0"
     id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("com.avast.gradle.docker-compose") version "0.16.11"
+    id("com.ryandens.javaagent-application") version "0.3.2"
     id("java")
     id("application")
 }
@@ -16,9 +18,12 @@ application {
 
 repositories {
     mavenCentral()
+    maven(url = "https://pkg.sourceplus.plus/sourceplusplus/probe-jvm")
 }
 
 dependencies {
+    javaagent("plus.sourceplus.probe:probe-jvm:0.7.4-SNAPSHOT")
+
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -35,14 +40,10 @@ dependencies {
     implementation("org.apache.skywalking:apm-toolkit-logback-1.x:8.12.0")
 }
 
-tasks {
-    test {
-        testLogging {
-            events("passed", "skipped", "failed")
-            setExceptionFormat("full")
-
-            outputs.upToDateWhen { false }
-            showStandardStreams = true
-        }
-    }
+tasks.getByName("composeUp") {
+    dependsOn("installDist")
+    mustRunAfter("installDist")
+}
+tasks.register("assembleUp") {
+    dependsOn("assemble", "composeUp")
 }

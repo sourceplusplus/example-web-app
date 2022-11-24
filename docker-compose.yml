@@ -1,0 +1,9 @@
+version: '3.3'
+services:
+  example-jvm:
+    container_name: example-jvm
+    hostname: example-jvm
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sourceplusplus/example-jvm
