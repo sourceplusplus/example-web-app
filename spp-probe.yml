@@ -2,6 +2,9 @@ spp:
   platform_host: ${SPP_PROBE_PLATFORM_HOST:-localhost}
   platform_port: ${SPP_PROBE_PLATFORM_PORT:-12800}
   quiet_mode: ${SPP_PROBE_QUIET_MODE:-false}
+  authentication:
+    client_id: ${SPP_PROBE_AUTH_CLIENT_ID:-test-id}
+    client_secret: ${SPP_PROBE_AUTH_CLIENT_SECRET:-test-secret}
 skywalking:
   logging:
     level: ${SW_LOGGING_LEVEL:-INFO}
