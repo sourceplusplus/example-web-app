@@ -3,7 +3,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.0"
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("com.avast.gradle.docker-compose") version "0.16.11"
-    id("com.ryandens.javaagent-application") version "0.3.2"
+    id("com.ryandens.javaagent-application") version "0.4.0"
     id("java")
     id("application")
 }
