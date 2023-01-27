@@ -1,5 +1,5 @@
 plugins {
-    id("org.springframework.boot") version "2.7.8"
+    id("org.springframework.boot") version "3.0.2"
     id("io.spring.dependency-management") version "1.1.0"
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("com.avast.gradle.docker-compose") version "0.16.11"
