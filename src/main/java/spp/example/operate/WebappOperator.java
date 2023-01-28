@@ -109,6 +109,14 @@ public class WebappOperator {
 
         Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
             try {
+                restTemplate.getForEntity("http://localhost:9999/slow-method", Void.class);
+                restTemplate.getForEntity("http://localhost:9999/fast-method", Void.class);
+            } catch (RestClientException ignore) {
+            }
+        }, 0, 750, TimeUnit.MILLISECONDS);
+
+        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
+            try {
                 restTemplate.getForEntity("http://localhost:9999/changing-primitive-local-vars", Void.class);
             } catch (RestClientException ignore) {
             }
