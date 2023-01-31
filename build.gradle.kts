@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-    javaagent("plus.sourceplus.probe:probe-jvm:0.7.6.1")
+    javaagent("plus.sourceplus.probe:probe-jvm:0.7.7")
 
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-web")
