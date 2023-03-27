@@ -1,4 +1,4 @@
 override: true
 service_host: "http://localhost"
-access_token: "change-me"
+authorization_code: "change-me"
 service_name: "example-jvm"
