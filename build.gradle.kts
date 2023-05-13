@@ -24,6 +24,8 @@ repositories {
 dependencies {
     javaagent("plus.sourceplus.probe:probe-jvm:0.7.7.1")
 
+    implementation("javax.annotation:javax.annotation-api:1.3.2")
+    implementation("javax.persistence:javax.persistence-api:2.2")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
