@@ -1,5 +1,5 @@
 plugins {
-    id("org.springframework.boot") version "3.0.6"
+    id("org.springframework.boot") version "2.7.11"
     id("io.spring.dependency-management") version "1.1.0"
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("com.avast.gradle.docker-compose") version "0.16.12"
@@ -24,8 +24,6 @@ repositories {
 dependencies {
     javaagent("plus.sourceplus.probe:probe-jvm:0.7.7.1")
 
-    implementation("javax.annotation:javax.annotation-api:1.3.2")
-    implementation("javax.persistence:javax.persistence-api:2.2")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
