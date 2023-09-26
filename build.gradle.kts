@@ -37,7 +37,7 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.30")
 
     implementation("org.apache.skywalking:apm-toolkit-trace:9.0.0")
-    implementation("org.apache.skywalking:apm-toolkit-logback-1.x:8.16.0")
+    implementation("org.apache.skywalking:apm-toolkit-logback-1.x:9.0.0")
 }
 
 tasks.getByName("composeUp") {
