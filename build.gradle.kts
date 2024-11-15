@@ -33,8 +33,8 @@ dependencies {
         exclude("org.yaml", "snakeyaml")
     }
 
-    compileOnly("org.projectlombok:lombok:1.18.30")
-    annotationProcessor("org.projectlombok:lombok:1.18.30")
+    compileOnly("org.projectlombok:lombok:1.18.36")
+    annotationProcessor("org.projectlombok:lombok:1.18.36")
 
     implementation("org.apache.skywalking:apm-toolkit-trace:9.0.0")
     implementation("org.apache.skywalking:apm-toolkit-logback-1.x:9.0.0")
